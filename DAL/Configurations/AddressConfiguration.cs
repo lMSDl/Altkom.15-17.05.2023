@@ -14,8 +14,13 @@ namespace DAL.Configurations
     {
         public void Configure(EntityTypeBuilder<Address> builder)
         {
-            
             builder.ToTable("Addresses");
+
+            //klucz złożony
+            //builder.HasKey(x => new { x.Street, x.City });
+
+            //Informujemy EFCore, że encja nie ma klucza
+            //builder.HasNoKey();
         }
     }
 }

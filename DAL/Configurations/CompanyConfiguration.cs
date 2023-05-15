@@ -16,6 +16,8 @@ namespace DAL.Configurations
         {
             
             builder.ToTable("Companies");
+
+            builder.Ignore(x => x.Address);
         }
     }
 }
