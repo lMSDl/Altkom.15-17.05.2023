@@ -10,10 +10,12 @@ using System.Threading.Tasks;
 
 namespace DAL.Configurations
 {
-    internal class AddressConfiguration : IEntityTypeConfiguration<Address>
+    internal class AddressConfiguration : EntityConfiguration<Address>
     {
-        public void Configure(EntityTypeBuilder<Address> builder)
+        public override void Configure(EntityTypeBuilder<Address> builder)
         {
+            base.Configure(builder);
+
             builder.ToTable("Addresses");
 
             //klucz złożony

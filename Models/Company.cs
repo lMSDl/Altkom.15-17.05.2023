@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Models
 {
     //[Table("Companies")]
-    public class Company
+    public class Company : Entity
     {
         public int Id { get; set; }
         public string Name { get; set; }

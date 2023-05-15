@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models
 {
-    public class Person
+    public class Person : Entity
     {
         //ręcznie oznaczamy klucz encji
         /*[Key]
@@ -17,10 +17,14 @@ namespace Models
         //[Required]
         public string? LastName { get; set; }
 
+        public string FullName { get; }
+
         //[Column(TypeName = "decimal(11,0)")]
         public ulong PESEL { get; set; }
         //[Range(1, 100)]
         public int Age { get; set; }
+
+        public Guid Guid { get; set; }
 
         //[NotMapped]
         public Address Address { get; set; }

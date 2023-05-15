@@ -12,7 +12,7 @@ namespace Models
     //[Table("Addresses")]
     //brak klucza
     //[Keyless]
-    public class Address
+    public class Address : Entity
     {
         //public int AddressId { get; set; }
 

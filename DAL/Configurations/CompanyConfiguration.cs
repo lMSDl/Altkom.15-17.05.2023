@@ -10,10 +10,11 @@ using System.Threading.Tasks;
 
 namespace DAL.Configurations
 {
-    internal class CompanyConfiguration : IEntityTypeConfiguration<Company>
+    internal class CompanyConfiguration : EntityConfiguration<Company>
     {
-        public void Configure(EntityTypeBuilder<Company> builder)
+        public override void Configure(EntityTypeBuilder<Company> builder)
         {
+            base.Configure(builder);
             
             builder.ToTable("Companies");
 

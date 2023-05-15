@@ -76,5 +76,16 @@ namespace DAL
 
         public DbSet<Person> People { get; }
 
+
+        public override int SaveChanges()
+        {
+            ChangeTracker.Entries<Entity>()
+                .Where(x => x.State == EntityState.Modified)
+                .Select(x => x.Entity)
+                .ToList()
+                .ForEach(x => x.ModifiedDate = DateTime.Now);
+
+            return base.SaveChanges();
+        }
     }
 }

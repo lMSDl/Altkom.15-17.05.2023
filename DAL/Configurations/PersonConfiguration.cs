@@ -10,16 +10,19 @@ using System.Threading.Tasks;
 
 namespace DAL.Configurations
 {
-    internal class PersonConfiguration : IEntityTypeConfiguration<Person>
+    internal class PersonConfiguration : EntityConfiguration<Person>
     {
-        public void Configure(EntityTypeBuilder<Person> builder)
+        public override void Configure(EntityTypeBuilder<Person> builder)
         {
+            base.Configure(builder);
+
             builder
                 .Property(x => x.Name)
                     .HasColumnName("FirstName")
                     .HasMaxLength(10);
             builder
                 .Property(x => x.LastName)
+                .HasDefaultValue("Unknown")
                     .IsRequired();
             builder
                 .Property(x => x.PESEL)
@@ -30,6 +33,12 @@ namespace DAL.Configurations
 
             //indeks unikalny
             builder.HasIndex(x => x.PESEL).IsUnique();
+
+            builder.Property(x => x.Id).ValueGeneratedNever();
+            builder.Property(x => x.Age).ValueGeneratedOnAdd();
+
+
+            builder.Property(x => x.FullName).HasComputedColumnSql("[FirstName] + ' ' + [LastName]", stored:true);
         }
     }
 }
