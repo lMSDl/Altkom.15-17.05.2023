@@ -2,6 +2,7 @@
 
 using DAL;
 using Microsoft.EntityFrameworkCore;
+using Models;
 
 //using (var context = new MyContext("Server=(local)\\SQLEXPRESS;Database=MyDb;User Id=sa;Password=pa$$w0rd"))
 using (var context = new MyContext("Server=(local)\\SQLEXPRESS;Database=MyDb;Integrated security=true"))
