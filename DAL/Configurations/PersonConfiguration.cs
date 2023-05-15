@@ -27,6 +27,9 @@ namespace DAL.Configurations
                     .HasPrecision(11, 0);
             builder
                 .Ignore(x => x.Address);
+
+            //indeks unikalny
+            builder.HasIndex(x => x.PESEL).IsUnique();
         }
     }
 }

@@ -20,7 +20,10 @@ namespace DAL.Configurations
             //builder.HasKey(x => new { x.Street, x.City });
 
             //Informujemy EFCore, że encja nie ma klucza
-            //builder.HasNoKey();
+            builder.HasNoKey();
+
+            //indeks złożony
+            builder.HasIndex(x => new { x.Street, x.City });
         }
     }
 }
