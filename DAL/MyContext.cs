@@ -12,6 +12,8 @@ namespace DAL
     {
         private string _connectionString;
 
+        public MyContext() { }
+
         public MyContext(string connectionString)
         {
             _connectionString = connectionString;
@@ -22,15 +24,17 @@ namespace DAL
 
         }
 
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
 
             if(!optionsBuilder.IsConfigured)
             {
-
-                optionsBuilder.UseSqlServer(_connectionString);
-
+                if (_connectionString != null)
+                    optionsBuilder.UseSqlServer(_connectionString);
+                else
+                    optionsBuilder.UseSqlServer();
             }
 
         }
@@ -38,6 +42,9 @@ namespace DAL
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Company>();
+
         }
 
         public DbSet<Person> People { get; }

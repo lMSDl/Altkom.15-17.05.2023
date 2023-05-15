@@ -8,7 +8,7 @@ using Models;
 using (var context = new MyContext("Server=(local)\\SQLEXPRESS;Database=MyDb;Integrated security=true"))
 //using (var context = new MyContext("Server=(localdb)\\mssqllocaldb;Database=MyDb;AttachDBFilename=c:\\EF6\\abc.mdf"))
 {
-    var result = context.Database.EnsureDeleted();
+    //var result = context.Database.EnsureDeleted();
 
 }
 
@@ -16,5 +16,7 @@ var options = new DbContextOptionsBuilder().UseSqlServer("Server=(local)\\SQLEXP
 
 using (var context = new MyContext(options))
 {
-    context.Database.EnsureCreated();
+    //context.Database.EnsureCreated();
+    context.Database.Migrate();
+
 }
