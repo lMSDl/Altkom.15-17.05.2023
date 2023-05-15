@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DAL.Configurations;
+using Microsoft.EntityFrameworkCore;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -43,8 +44,34 @@ namespace DAL
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Company>();
+            //modelBuilder.Entity<Company>().ToTable("Companies");
 
+            //modelBuilder.Entity<Address>().ToTable("Addresses");
+
+            /*modelBuilder.Entity<Person>()
+                .Property(x => x.Name)
+                    .HasColumnName("FirstName")
+                    .HasMaxLength(10);
+            modelBuilder.Entity<Person>()
+                .Property(x => x.LastName)
+                    .IsRequired();
+            modelBuilder.Entity<Person>()
+                .Property(x => x.PESEL)
+                    //.HasColumnType("decimal(11,0)");
+                    .HasPrecision(11, 0);
+            modelBuilder.Entity<Person>()
+                .Ignore(x => x.Address);*/
+
+            //ręczne dodawanie konfiguracji
+            //modelBuilder.ApplyConfiguration(new CompanyConfiguration());
+            //modelBuilder.ApplyConfiguration(new AddressConfiguration());
+            //modelBuilder.ApplyConfiguration(new PersonConfiguration());
+
+            //automatyczne dodawanie konfiguracji ze wskazanego assembly (wyszukuje klasy implementujące IEntityTypeConfiguration)
+            modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+
+            //pominięcie mapowania wskazanego typu
+            //modelBuilder.Ignore<Address>();
         }
 
         public DbSet<Person> People { get; }

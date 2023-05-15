@@ -11,18 +11,18 @@ namespace Models
 
         //klucz jest wyznaczany automatycznie jeśli właściwość nazywa się Id lub <nazwa klasy>Id (np. PersonId)
         public int Id { get; set; }
-        [Column("FirstName")]
-        [MaxLength(10)]
+        //[Column("FirstName")]
+        //[MaxLength(10)]
         public string Name { get; set; }
-        [Required]
+        //[Required]
         public string? LastName { get; set; }
 
-        [Column(TypeName = "decimal(11,0)")]
+        //[Column(TypeName = "decimal(11,0)")]
         public ulong PESEL { get; set; }
-        [Range(1, 100)]
+        //[Range(1, 100)]
         public int Age { get; set; }
 
-        [NotMapped]
+        //[NotMapped]
         public Address Address { get; set; }
     }
 }
