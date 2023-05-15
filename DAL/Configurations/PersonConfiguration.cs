@@ -34,8 +34,10 @@ namespace DAL.Configurations
             //indeks unikalny
             builder.HasIndex(x => x.PESEL).IsUnique();
 
-            builder.Property(x => x.Id).ValueGeneratedNever();
-            builder.Property(x => x.Age).ValueGeneratedOnAdd();
+            //builder.Property(x => x.Id).ValueGeneratedNever();
+            //builder.Property(x => x.Age).ValueGeneratedOnAdd();
+
+            builder.Property(x => x.Age).HasDefaultValueSql("NEXT VALUE FOR NumbersSequence");
 
 
             builder.Property(x => x.FullName).HasComputedColumnSql("[FirstName] + ' ' + [LastName]", stored:true);

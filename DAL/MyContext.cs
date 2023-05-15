@@ -72,9 +72,21 @@ namespace DAL
 
             //pominięcie mapowania wskazanego typu
             //modelBuilder.Ignore<Address>();
+
+
+            modelBuilder.HasSequence<int>("NumbersSequence")
+                .StartsAt(150)
+                .HasMin(100)
+                .HasMax(200)
+                .IncrementsBy(33)
+                .IsCyclic();
+
+
         }
 
         public DbSet<Person> People { get; }
+
+
 
 
         public override int SaveChanges()
