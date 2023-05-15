@@ -23,7 +23,10 @@ namespace DAL.Configurations
             builder.HasNoKey();
 
             //indeks złożony
-            builder.HasIndex(x => new { x.Street, x.City });
+            builder.HasIndex(x => new { x.Street, x.City })
+                .IncludeProperties(x => x.ZipCode);
+
+
         }
     }
 }
