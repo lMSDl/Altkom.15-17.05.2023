@@ -33,9 +33,9 @@ namespace Services.DAL
 
         public virtual Task<T?> ReadAsync(int id)
         {
-            return _context.Set<T>().FindAsync(id).AsTask();
+            //return _context.Set<T>().FindAsync(id).AsTask();
             // wyłączenie śledzenia encji (lokalne) - pozwala uniknąć błędów przy późniejszych opróbach załączania encji o takim samym id (np. update)
-            //return _context.Set<T>().AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
+            return _context.Set<T>().AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public virtual  async Task<IEnumerable<T>> ReadAsync()

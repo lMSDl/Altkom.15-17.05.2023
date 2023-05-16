@@ -12,8 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<DbContext, MyContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("MyDbConnectionString"))
+                                                                       /*.UseLazyLoadingProxies()*/
+                                                                       .LogTo(x => Console.WriteLine(x)));
                                                                       // wy³¹czenie œledzenia encji (globalne)
-                                                                      .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTrackingWithIdentityResolution));
+                                                                      //.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTrackingWithIdentityResolution));
 
 builder.Services.AddScoped<IService<Person>, Service<Person>>();
 builder.Services.AddScoped<IService<Company>, Service<Company>>();
@@ -21,7 +23,7 @@ builder.Services.AddScoped<IService<SmallCompany>, Service<SmallCompany>>();
 builder.Services.AddScoped<IService<LargeCompany>, Service<LargeCompany>>();
 builder.Services.AddScoped<IService<Educator>, Service<Educator>>();
 builder.Services.AddScoped<IService<Student>, Service<Student>>();
-builder.Services.AddScoped<IService<StandaloneAddress>, Service<StandaloneAddress>>();
+builder.Services.AddScoped<IService<StandaloneAddress>, StandaloneAddressesService>();
 
 var app = builder.Build();
 
