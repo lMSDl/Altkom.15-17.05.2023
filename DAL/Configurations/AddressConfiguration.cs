@@ -30,6 +30,7 @@ namespace DAL.Configurations
 
             builder.Ignore(x => x.Id);
 
+            builder.UseTpcMappingStrategy();
         }
     }
 }
