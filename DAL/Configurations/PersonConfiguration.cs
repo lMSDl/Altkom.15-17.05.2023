@@ -40,7 +40,7 @@ namespace DAL.Configurations
             builder.Property(x => x.Age).HasDefaultValueSql("NEXT VALUE FOR NumbersSequence");
 
 
-            builder.Property(x => x.FullName).HasComputedColumnSql("[FirstName] + ' ' + [LastName]", stored:true);
+            builder.Property(x => x.FullName).IsRequired().HasComputedColumnSql("[FirstName] + ' ' + [LastName]", stored:true);
         }
     }
 }

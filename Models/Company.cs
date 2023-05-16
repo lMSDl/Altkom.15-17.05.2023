@@ -15,5 +15,7 @@ namespace Models
 
         public Address? Address { get; set; }
 
+        public int Hash { get; set; }
+
     }
 }
