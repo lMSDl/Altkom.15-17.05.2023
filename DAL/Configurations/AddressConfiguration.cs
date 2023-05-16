@@ -28,6 +28,7 @@ namespace DAL.Configurations
             builder.HasIndex(x => new { x.Street, x.City })
                 .IncludeProperties(x => x.ZipCode);
 
+            builder.Ignore(x => x.Id);
 
         }
     }

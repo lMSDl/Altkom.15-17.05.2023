@@ -10,14 +10,14 @@ namespace Models
         public int Key { get; set; }*/
 
         //klucz jest wyznaczany automatycznie jeśli właściwość nazywa się Id lub <nazwa klasy>Id (np. PersonId)
-        public int Id { get; set; }
+        //public int Id { get; set; }
         //[Column("FirstName")]
         //[MaxLength(10)]
         public string Name { get; set; }
         //[Required]
         public string? LastName { get; set; }
 
-        public string FullName { get; }
+        public string? FullName { get; }
 
         //[Column(TypeName = "decimal(11,0)")]
         public ulong PESEL { get; set; }
@@ -27,6 +27,6 @@ namespace Models
         public Guid Guid { get; set; }
 
         //[NotMapped]
-        public Address Address { get; set; }
+        public Address? Address { get; set; }
     }
 }
