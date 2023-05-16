@@ -46,11 +46,11 @@ using (var context = new MyContext(options))
 
 using (var context = new MyContext(options))
 {
-    var user1 = new User { Username = "Admin", Password = "pasword", Type = UserTypes.Admin };
+    //var user1 = new User { Username = "Admin", Password = "pasword", Type = UserTypes.Admin };
     var user2 = new User { Username = "User", Password = "pasword", Type = UserTypes.User };
     var user3 = new User { Username = "Anonymouse", Password = "pasword", Type = UserTypes.Anonymouse };
 
-    context.Add(user1);
+    //context.Add(user1);
     context.Add(user2);
     context.Add(user3);
 

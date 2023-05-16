@@ -30,6 +30,8 @@ namespace DAL.Configurations
 
             builder.Property(x => x.Password).HasConversion(x => Convert.ToBase64String(Encoding.Default.GetBytes(x)),
                                                             x => Encoding.Default.GetString(Convert.FromBase64String(x)));
+
+            builder.HasData(new User { Password = "admin", Username = "admin", Type = UserTypes.Admin }, new User { Username = "some user", Password = "none", Type = UserTypes.Anonymouse });
         }
     }
 }
