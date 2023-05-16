@@ -32,6 +32,11 @@ namespace DAL.Configurations
                                                             x => Encoding.Default.GetString(Convert.FromBase64String(x)));
 
             builder.HasData(new User { Password = "admin", Username = "admin", Type = UserTypes.Admin }, new User { Username = "some user", Password = "none", Type = UserTypes.Anonymouse });
+
+
+            builder.Ignore(x => x.Id).Ignore(x => x.CreatedDate).Ignore(x => x.ModifiedDate);
+
+
         }
     }
 }

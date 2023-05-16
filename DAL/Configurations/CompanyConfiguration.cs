@@ -39,6 +39,8 @@ namespace DAL.Configurations
 
 
             builder.Property(x => x.Hash).HasColumnName("Type");
+
+            builder.HasQueryFilter(x => !x.IsDeleted);
         }
     }
 }

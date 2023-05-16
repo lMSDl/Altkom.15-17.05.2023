@@ -17,5 +17,9 @@ namespace Models
 
         public int Hash { get; set; }
 
+
+
+        public bool IsDeleted { get; set; }
+
     }
 }
