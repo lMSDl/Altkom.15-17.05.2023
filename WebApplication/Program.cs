@@ -21,6 +21,7 @@ builder.Services.AddScoped<IService<SmallCompany>, Service<SmallCompany>>();
 builder.Services.AddScoped<IService<LargeCompany>, Service<LargeCompany>>();
 builder.Services.AddScoped<IService<Educator>, Service<Educator>>();
 builder.Services.AddScoped<IService<Student>, Service<Student>>();
+builder.Services.AddScoped<IService<StandaloneAddress>, Service<StandaloneAddress>>();
 
 var app = builder.Build();
 
