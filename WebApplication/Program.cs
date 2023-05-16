@@ -19,6 +19,8 @@ builder.Services.AddScoped<IService<Person>, Service<Person>>();
 builder.Services.AddScoped<IService<Company>, Service<Company>>();
 builder.Services.AddScoped<IService<SmallCompany>, Service<SmallCompany>>();
 builder.Services.AddScoped<IService<LargeCompany>, Service<LargeCompany>>();
+builder.Services.AddScoped<IService<Educator>, Service<Educator>>();
+builder.Services.AddScoped<IService<Student>, Service<Student>>();
 
 var app = builder.Build();
 
