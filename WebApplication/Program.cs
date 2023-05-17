@@ -11,9 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<DbContext, MyContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("MyDbConnectionString"))
+builder.Services.AddDbContextPool<DbContext, MyContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("MyDbConnectionString"))
                                                                        /*.UseLazyLoadingProxies()*/
-                                                                       .LogTo(x => Console.WriteLine(x)));
+                                                                       .LogTo(x => Console.WriteLine(x)), poolSize: 32);
                                                                       // wy³¹czenie œledzenia encji (globalne)
                                                                       //.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTrackingWithIdentityResolution));
 
