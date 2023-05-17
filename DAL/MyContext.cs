@@ -81,7 +81,7 @@ namespace DAL
                 .IncrementsBy(33)
                 .IsCyclic();
 
-
+            modelBuilder.Entity<OrderSummary>().ToTable(name: null);
         }
 
         public DbSet<Person> People { get; }

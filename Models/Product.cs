@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    internal class Product : Entity
+    public class Product : Entity
     {
         public string Name { get; set; }
         public float Price { get; set; }
+
+        public Order Orders { get; set; }
     }
 }

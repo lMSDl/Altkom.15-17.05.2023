@@ -60,6 +60,30 @@ using (var context = new MyContext(options))
 
 
 
+for (int i = 0; i < 20; i++)
+{
+
+    using (var context = new MyContext(options))
+    {
+
+        var order = new Order() { Customer = "abc" + i};
+        var product = new Product() { Name = "Kapusta " + i };
+        order.Products.Add(product);
+        context.Add(order);
+        context.SaveChanges();
+    }
+}
+
+using (var context = new MyContext(options))
+{
+    //var multiplier = "-1.1; DROP TABLE Product";
+    var multiplier = "-1.1";
+    //context.Database.ExecuteSqlRaw("EXEC ChangePrice @p0", multiplier);
+    context.Database.ExecuteSqlInterpolated($"EXEC ChangePrice {multiplier}");
+
+    var result = context.Set<OrderSummary>().FromSqlInterpolated($"EXEC OrderSummary {3}");
+}
+
 
     Console.WriteLine();
 
