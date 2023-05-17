@@ -86,6 +86,67 @@ using (var context = new MyContext(options))
 }
 
 
+
+using (var context = new MyContext(options))
+{
+    context.Add(new KeyTest { Value = 4 });
+    context.SaveChanges();
+}
+
+
+var addValue = 15;
+using (var context = new MyContext(options))
+{
+
+    context.Set<KeyTest>().First().Value = addValue;
+
+    var saved = false;
+    do
+    {
+        try
+        {
+
+            context.SaveChanges();
+            saved = true;
+        }
+
+        catch (DbUpdateConcurrencyException ex)
+        {
+            foreach (var entry in ex.Entries)
+            {
+                //wartości jakie chcemy wprowadzić (wartość 15)
+                var currentValues = entry.CurrentValues;
+                //wartości jakie pobraliśmy z bazy / jakie pamięta kontekst (wartość 4)
+                var originalValues = entry.OriginalValues;
+                //wartości jakie są aktualnie w bazie danych
+                var databaseValues = entry.GetDatabaseValues();
+
+
+                switch (entry.Entity)
+                {
+                    case KeyTest:
+                        var property = currentValues.Properties.Single(x => x.Name == nameof(KeyTest.Value));
+
+                        var currentValue = (int)currentValues[property];
+                        var originalValue = (int)originalValues[property];
+                        var databaseValue = (int)databaseValues[property];
+
+                        currentValues[property] = databaseValue + (currentValue - originalValue);
+
+                        break;
+                }
+
+                entry.OriginalValues.SetValues(databaseValues);
+
+            }
+        }
+    } while (!saved);
+
+}
+
+
+
+
     Console.WriteLine();
 
 
