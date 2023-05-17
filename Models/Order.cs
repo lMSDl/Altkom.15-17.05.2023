@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    internal class Order
+    internal class  Order : Entity
     {
+        public string Customer { get; set; }
     }
 }

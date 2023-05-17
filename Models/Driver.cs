@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    internal class Driver
+    internal class Driver : Entity 
     {
+        public string Name { get; set; }
     }
 }

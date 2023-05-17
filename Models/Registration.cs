@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    internal class Registration
+    internal class Registration : Entity
     {
+        public string Number { get; set; }
     }
 }

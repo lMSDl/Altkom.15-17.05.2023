@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    internal class Product
+    internal class Product : Entity
     {
+        public string Name { get; set; }
+        public float Price { get; set; }
     }
 }

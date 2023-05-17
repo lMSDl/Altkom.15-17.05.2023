@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    internal class Engine
+    internal class Engine : Entity
     {
+        public int Power { get; set; }
     }
 }
