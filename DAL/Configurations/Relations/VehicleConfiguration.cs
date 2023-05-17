@@ -25,6 +25,17 @@ namespace DAL.Configurations.Relations
             /*builder.HasOne(x => x.Engine).WithMany();
             builder.HasOne<Engine>().WithMany(x => x.Vehicles);*/
 
+            builder.HasMany(x => x.Drivers).WithMany(x => x.Vehicles);
+            /*builder.HasMany<Driver>().WithMany(x => x.Vehicles)
+                .UsingEntity("DriverVehicle",
+                    x => x.HasOne(typeof(Driver)).WithMany().HasForeignKey("DriversId").HasPrincipalKey(nameof(Driver.Id)),
+                    x => x.HasOne(typeof(Vehicle)).WithMany().HasForeignKey("VehiclesId").HasPrincipalKey(nameof(Vehicle.Id)),
+                    x => x.HasKey("DriversId", "VehiclesId"));*/
+            /*builder.HasMany<Driver>().WithMany()
+                .UsingEntity("DriverVehicle",
+                    x => x.HasOne(typeof(Driver)).WithMany().HasForeignKey("DriversId").HasPrincipalKey(nameof(Driver.Id)),
+                    x => x.HasOne(typeof(Vehicle)).WithMany().HasForeignKey("VehiclesId").HasPrincipalKey(nameof(Vehicle.Id)),
+                    x => x.HasKey("DriversId", "VehiclesId"));*/
         }
     }
 }
