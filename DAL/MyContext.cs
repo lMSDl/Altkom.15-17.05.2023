@@ -1,5 +1,8 @@
 ﻿using DAL.Configurations;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -82,7 +85,38 @@ namespace DAL
                 .IsCyclic();
 
             modelBuilder.Entity<OrderSummary>().ToTable(name: null);
+
+
+            modelBuilder.Entity<KeyTest>();
+            modelBuilder.Model.GetEntityTypes()
+                .SelectMany(x => x.GetProperties())
+                .Where(x => x.Name == "Key")
+                .ToList()
+                .ForEach(x =>
+                {
+                    x.IsNullable = false;
+                    x.DeclaringEntityType.SetPrimaryKey(x);
+                });
+
+            modelBuilder.Model.GetEntityTypes()
+                .SelectMany(x => x.GetProperties())
+                .Where(x => x.PropertyInfo?.PropertyType == typeof(string))
+                .ToList()
+                .ForEach(x => 
+                        x.SetValueConverter(new ValueConverter<string, string>(
+                        x => Convert.ToBase64String(Encoding.Default.GetBytes(x)),
+                        x => Encoding.Default.GetString(Convert.FromBase64String(x)))));
+
         }
+
+
+        protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+        {
+            base.ConfigureConventions(configurationBuilder);
+
+
+        }
+
 
         public DbSet<Person> People { get; }
 

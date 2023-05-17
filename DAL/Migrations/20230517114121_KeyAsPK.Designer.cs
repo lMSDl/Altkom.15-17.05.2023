@@ -4,6 +4,7 @@ using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20230517114121_KeyAsPK")]
+    partial class KeyAsPK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,7 +44,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("VehiclesId");
 
-                    b.ToTable("DriverVehicle", (string)null);
+                    b.ToTable("DriverVehicle");
                 });
 
             modelBuilder.Entity("Models.Address", b =>
@@ -128,7 +131,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Driver", (string)null);
+                    b.ToTable("Driver");
                 });
 
             modelBuilder.Entity("Models.Engine", b =>
@@ -152,7 +155,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Engine", (string)null);
+                    b.ToTable("Engine");
                 });
 
             modelBuilder.Entity("Models.KeyTest", b =>
@@ -168,7 +171,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Key");
 
-                    b.ToTable("KeyTest", (string)null);
+                    b.ToTable("KeyTest");
                 });
 
             modelBuilder.Entity("Models.Location", b =>
@@ -221,7 +224,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Order", (string)null);
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("Models.OrderSummary", b =>
@@ -291,7 +294,7 @@ namespace DAL.Migrations
                     b.HasIndex("PESEL")
                         .IsUnique();
 
-                    b.ToTable("People", (string)null);
+                    b.ToTable("People");
 
                     b.UseTptMappingStrategy();
                 });
@@ -326,7 +329,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("OrdersId");
 
-                    b.ToTable("Product", (string)null);
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("Models.Registration", b =>
@@ -358,7 +361,7 @@ namespace DAL.Migrations
                         .IsUnique()
                         .HasFilter("[VehicleId] IS NOT NULL");
 
-                    b.ToTable("Registration", (string)null);
+                    b.ToTable("Registration");
                 });
 
             modelBuilder.Entity("Models.StandaloneAddress", b =>
@@ -409,7 +412,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Username");
 
-                    b.ToTable("User", (string)null);
+                    b.ToTable("User");
 
                     b.HasData(
                         new
@@ -453,7 +456,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("EngineId");
 
-                    b.ToTable("Vehicle", (string)null);
+                    b.ToTable("Vehicle");
                 });
 
             modelBuilder.Entity("Models.Inheritance.LocalAddress", b =>
@@ -540,7 +543,7 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("SuperStudent", (string)null);
+                    b.ToTable("SuperStudent");
                 });
 
             modelBuilder.Entity("DriverVehicle", b =>
