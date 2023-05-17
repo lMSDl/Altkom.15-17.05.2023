@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    internal class Vehicle : Entity
+    public class Vehicle : Entity
     {
         public string Name { get; set; } = ""; 
+
+        public Registration? Registration { get; set; }
     }
 }

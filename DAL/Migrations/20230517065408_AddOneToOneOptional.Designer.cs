@@ -4,6 +4,7 @@ using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20230517065408_AddOneToOneOptional")]
+    partial class AddOneToOneOptional
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -393,8 +396,7 @@ namespace DAL.Migrations
                 {
                     b.HasOne("Models.Vehicle", "Vehicle")
                         .WithOne("Registration")
-                        .HasForeignKey("Models.Registration", "VehicleId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .HasForeignKey("Models.Registration", "VehicleId");
 
                     b.Navigation("Vehicle");
                 });
