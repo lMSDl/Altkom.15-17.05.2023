@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    internal class Engine : Entity
+    public class Engine : Entity
     {
         public int Power { get; set; }
+
+        public IEnumerable<Vehicle> Vehicles { get; set; }
     }
 }

@@ -20,6 +20,11 @@ namespace DAL.Configurations.Relations
             builder.HasOne(x => x.Registration).WithOne(x => x.Vehicle)
                 .HasForeignKey<Registration>("VehicleId").IsRequired(false)
                 .OnDelete(DeleteBehavior.SetNull);
+
+            builder.HasOne(x => x.Engine).WithMany(x => x.Vehicles);
+            /*builder.HasOne(x => x.Engine).WithMany();
+            builder.HasOne<Engine>().WithMany(x => x.Vehicles);*/
+
         }
     }
 }
