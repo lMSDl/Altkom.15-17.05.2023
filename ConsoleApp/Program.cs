@@ -82,6 +82,7 @@ using (var context = new MyContext(options))
     context.Database.ExecuteSqlInterpolated($"EXEC ChangePrice {multiplier}");
 
     var result = context.Set<OrderSummary>().FromSqlInterpolated($"EXEC OrderSummary {3}");
+    var results = context.Set<OrderSummary>().ToList();
 }
 
 

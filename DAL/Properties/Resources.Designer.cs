@@ -61,6 +61,28 @@ namespace DAL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DROP VIEW View_OrderSummary.
+        /// </summary>
+        internal static string AddOrderSummaryView_DOWN {
+            get {
+                return ResourceManager.GetString("AddOrderSummaryView_DOWN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CREATE VIEW View_OrderSummary AS
+        ///    SELECT o.Id, o.CreatedDate, COUNT(p.Id) AS Count
+        ///    FROM [Order] as o
+        ///    JOIN Product as p ON o.Id = p.Id
+        ///    GROUP BY o.Id, o.[CreatedDate]    .
+        /// </summary>
+        internal static string AddOrderSummaryView_UP {
+            get {
+                return ResourceManager.GetString("AddOrderSummaryView_UP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DROP PROCEDURE OrderSummary.
         /// </summary>
         internal static string OrderSummary_DOWN {
@@ -75,11 +97,11 @@ namespace DAL.Properties {
         ///AS
         ///BEGIN
         ///
-        ///	SELECT o.Id, o.DateTime, COUNT(p.Id) AS Count
+        ///	SELECT o.Id, o.CreatedDate, COUNT(p.Id) AS Count
         ///	FROM [Order] as o
-        ///	JOIN Product as p ON o.Id = p.OrderId
+        ///	JOIN Product as p ON o.Id = p.OrdersId
         ///	WHERE o.Id = @id
-        ///	GROUP BY o.Id, o.[DateTime]	
+        ///	GROUP BY o.Id, o.[CreatedDate]	
         ///
         ///END.
         /// </summary>

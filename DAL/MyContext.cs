@@ -84,7 +84,8 @@ namespace DAL
                 .IncrementsBy(33)
                 .IsCyclic();
 
-            modelBuilder.Entity<OrderSummary>().ToTable(name: null);
+            //modelBuilder.Entity<OrderSummary>().ToTable(name: null);
+            modelBuilder.Entity<OrderSummary>().ToView("View_OrderSummary");
 
 
             modelBuilder.Entity<KeyTest>();
